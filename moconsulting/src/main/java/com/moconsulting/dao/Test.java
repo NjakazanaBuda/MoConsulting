@@ -17,9 +17,6 @@ public class Test {
 			
 			user.setFirstname("Ntshuxeko");
 			user.setLastname("Mabasa");
-			user.setIdnumber("9406095704086");
-			
-			Logger.getGlobal().info("Before adding user");
 			
 			dao.addUser(user);
 		}

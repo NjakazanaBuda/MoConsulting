@@ -10,10 +10,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.DateSerializer;
+import com.moconsulting.framework.IDataEntity;
 
 @Entity
 @Table(name = "Roles")
-public class Roles implements Serializable{
+public class Roles implements IDataEntity, Serializable{
 	
 	@Id
 	@Column(name = "role_id")
