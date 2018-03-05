@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import com.moconsulting.enitty.Users;
 
-
 public class Test {
 
 	public static void main(String[] args)
@@ -15,8 +14,8 @@ public class Test {
 			
 			Users user = new Users();
 			
-			user.setFirstname("Ntshuxeko");
-			user.setLastname("Mabasa");
+			user.setFirstname("Bafana");
+			user.setLastname("Buda");
 			
 			dao.addUser(user);
 		}
