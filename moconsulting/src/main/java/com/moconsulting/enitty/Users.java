@@ -2,17 +2,22 @@ package com.moconsulting.enitty;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
+import java.util.HashSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.DateSerializer;
@@ -37,7 +42,7 @@ public class Users implements IDataEntity, Serializable{
 	private String idnumber;
 
     @Column(name = "cell_number")
-	private int cellnumber;
+	private String cellnumber;
 
     @Column(name = "email_address")
 	private String emailaddress;
@@ -48,7 +53,10 @@ public class Users implements IDataEntity, Serializable{
 	@Column(name = "created_date")
 	private Date createdDate;
 	
-	private Login login;
+	//private Login login;
+	
+	@Transient
+	private Set<Roles> roles = new HashSet<Roles>(0);
 	
 	public int getUserid() {
 		return userid;
@@ -82,11 +90,11 @@ public class Users implements IDataEntity, Serializable{
 		this.idnumber = idnumber;
 	}
 
-	public int getCellnumber() {
+	public String getCellnumber() {
 		return cellnumber;
 	}
 
-	public void setCellnumber(int cellnumber) {
+	public void setCellnumber(String cellnumber) {
 		this.cellnumber = cellnumber;
 	}
 
@@ -114,15 +122,26 @@ public class Users implements IDataEntity, Serializable{
 		this.createdDate = createdDate;
 	}
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn 
-	public Login getLogin() {
-		return login;
-	}
+	//@OneToOne(cascade = CascadeType.ALL)
+	//@PrimaryKeyJoinColumn 
+	//public Login getLogin() {
+		//return login;
+	//}
 
-	public void setLogin(Login login) {
-		this.login = login;
+	//public void setLogin(Login login) {
+		//this.login = login;
+	//}
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "Users_In_Roles", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
+	public Set<Roles> getRoles() {
+		return this.roles;
 	}
+	
+	public void setRoles(Set<Roles> roles) {
+		this.roles = roles;
+	}
+	
 
 	@Override
 	public String toString() {

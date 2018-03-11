@@ -23,6 +23,7 @@ public class Roles implements IDataEntity, Serializable{
 	@Column(name = "role_name")
 	private String rolename;
 	
+	
 	public int getRoleid() {
 		return roleid;
 	}
@@ -39,5 +40,4 @@ public class Roles implements IDataEntity, Serializable{
 		this.rolename = rolename;
 	}
 	
-
 }

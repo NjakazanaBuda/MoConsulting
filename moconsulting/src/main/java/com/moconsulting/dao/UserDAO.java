@@ -20,7 +20,7 @@ public class UserDAO extends AbstractDAO {
 	public String addUser(Users user) throws Exception
 	{
 		super.create(user);
-		super.create(user.getLogin());
+		//;super.create(user.getLogin());
 		return "User has been registered successfully";
 		
 	}
