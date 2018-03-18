@@ -38,5 +38,11 @@ public class RoleDAO extends AbstractDAO {
 	    
 		return (List<Roles>)super.getList(query, parameters,from.intValue(),noRows);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Roles> showRoles() throws Exception
+	{
+		return (List<Roles>)super.getListColumn("select r.rolename from Roles r");
+	}
 
 }
