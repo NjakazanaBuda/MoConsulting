@@ -192,6 +192,21 @@ public abstract class AbstractDAO implements Serializable {
 	protected List<?> getList(String hql) {
 		return getList(hql, null);
 	}
+	
+	@SuppressWarnings("unchecked")
+	protected List<?> getListColumn(String hql) {
+		List<Object> result = null;
+		Session session = getSession();
+		try {
+			org.hibernate.Query query = session.createQuery(hql);
+			result = query.list();
+		} catch (HibernateException e) {
+			throw e;
+		} finally {
+			session.close();
+		}
+		return result;
+	}
 
 	protected List<?> getList(String hql, int noRows) {
 		return getList(hql, null, noRows);

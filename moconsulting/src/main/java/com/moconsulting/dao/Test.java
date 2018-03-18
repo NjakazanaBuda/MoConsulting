@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 import java.util.Date;
+import java.util.List;
+import java.util.Iterator;
 
 import com.moconsulting.enitty.Users;
 import com.moconsulting.enitty.Roles;
@@ -67,6 +69,19 @@ public class Test {
 			dao.addUser(user);
 			dao.addUser(user1);
 			dao.addUser(user2);
+			List showroles = roledao.showRoles();
+			
+			System.out.println("Total Number Of Records : "+showroles.size());
+			Iterator it = showroles.iterator();
+			
+			while(it.hasNext())
+			 {
+			 String i = (String)it.next();
+			 System.out.println("Role Name : "+i.toString());
+			 System.out.println("---------------------------");
+			 
+			 } 
+			 
 		}
 		catch(Exception err)
 		{
